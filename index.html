@@ -197,8 +197,10 @@
             let prevEV = null;
             let prevRank = 0;
             pvSorted.forEach((item, i) => {
-              if (prevPV !== null && eq(item.pvAccuracy, prevPV) && eq(item.evAccuracy, prevEV)) {
-                // same as previous -> same rank
+              // Tie by primary metric only (pvAccuracy). Keep secondary sort for ordering
+              // but do not use it to break ties for ranking.
+              if (prevPV !== null && eq(item.pvAccuracy, prevPV)) {
+                // same primary accuracy as previous -> same rank
                 pvRankings.push({ ...item, rank: prevRank });
               } else {
                 const rank = i + 1;
@@ -221,7 +223,9 @@
             prevEV = null;
             prevRank = 0;
             evSorted.forEach((item, i) => {
-              if (prevEV !== null && eq(item.evAccuracy, prevEV) && eq(item.pvAccuracy, prevPV)) {
+              // Tie by primary metric only (evAccuracy). Keep secondary sort for ordering
+              // but do not use it to break ties for ranking.
+              if (prevEV !== null && eq(item.evAccuracy, prevEV)) {
                 evRankings.push({ ...item, rank: prevRank });
               } else {
                 const rank = i + 1;
