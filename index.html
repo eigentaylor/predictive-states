@@ -28,9 +28,67 @@
       body.dark .text-gray-600 { color: #94a3b8 !important; }
       body.dark .text-gray-500 { color: #6b7280 !important; }
 
-      /* Input range styling in dark */
+      /* Input range styling in dark: brighter track, visible thumb, and focus ring */
       body.dark input[type="range"] {
-        background: #1f2937 !important;
+        -webkit-appearance: none;
+        appearance: none;
+        height: 10px;
+        background: linear-gradient(90deg, rgba(37,99,235,0.14), rgba(124,58,237,0.12));
+        border-radius: 9999px;
+        outline: none;
+        padding: 0;
+        margin: 6px 0;
+      }
+
+      /* WebKit track/thumb */
+      body.dark input[type="range"]::-webkit-slider-runnable-track {
+        height: 10px;
+        background: linear-gradient(90deg, #0f1724, #071226);
+        border-radius: 9999px;
+      }
+
+      body.dark input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        margin-top: -5px; /* center the thumb on the track */
+        width: 18px;
+        height: 18px;
+        background: #e6eef8;
+        border: 3px solid #2563eb; /* bright blue ring */
+        border-radius: 50%;
+        box-shadow: 0 4px 10px rgba(2,6,23,0.6);
+      }
+
+      /* Firefox track/thumb */
+      body.dark input[type='range']::-moz-range-track {
+        height: 10px;
+        background: linear-gradient(90deg, #0f1724, #071226);
+        border-radius: 9999px;
+      }
+
+      body.dark input[type='range']::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+        background: #e6eef8;
+        border: 3px solid #2563eb;
+        border-radius: 50%;
+        box-shadow: 0 4px 10px rgba(2,6,23,0.6);
+      }
+
+      body.dark input[type='range']:focus {
+        box-shadow: 0 0 0 6px rgba(37,99,235,0.10);
+      }
+
+      /* Make the mobile dropdown/select readable in dark mode */
+      body.dark select {
+        background-color: #07162a !important;
+        color: #e6eef8 !important;
+        border-color: #324157 !important;
+      }
+
+      body.dark select option {
+        background-color: #07162a;
+        color: #e6eef8;
       }
 
       /* Slightly soften shadows in dark mode */
